@@ -23,5 +23,7 @@ namespace Lab3Rastr
             Form ifrm = Application.OpenForms[0];
             ifrm.Show();
         }
+
+        
     }
 }

@@ -28,22 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(38, 204);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(360, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Тут могли быть ваши градиентные треугольники";
             // 
             // GradientTraing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(444, 450);
+            this.Controls.Add(this.label1);
             this.Name = "GradientTraing";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GradientTraing";
+            this.Text = "Градиентное окрашивание треугольника";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GradientTraing_FormClosed);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private Label label1;
     }
 }
