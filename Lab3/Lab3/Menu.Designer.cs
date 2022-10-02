@@ -35,7 +35,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(88, 34);
+            this.button1.Location = new System.Drawing.Point(147, 45);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 62);
             this.button1.TabIndex = 0;
@@ -45,9 +45,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(88, 102);
+            this.button2.Location = new System.Drawing.Point(147, 153);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 62);
+            this.button2.Size = new System.Drawing.Size(107, 54);
             this.button2.TabIndex = 1;
             this.button2.Text = "Рисование отрезка";
             this.button2.UseVisualStyleBackColor = true;
@@ -55,9 +55,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(88, 170);
+            this.button3.Location = new System.Drawing.Point(147, 259);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 62);
+            this.button3.Size = new System.Drawing.Size(107, 53);
             this.button3.TabIndex = 2;
             this.button3.Text = "Градиентное окрашивание треугольника";
             this.button3.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 267);
+            this.ClientSize = new System.Drawing.Size(400, 361);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
