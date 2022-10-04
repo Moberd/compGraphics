@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Lab3"
+    "\\Lab3",
+    "\\Lab3\\Lab3",
+    "\\Lab3\\Lab3\\pic"
   ],
-  "SelectedNode": "\\Lab3\\Lab3.sln",
+  "SelectedNode": "\\Lab3\\Lab3\\GradientTraing.Designer.cs",
   "PreviewInSolutionExplorer": false
 }
