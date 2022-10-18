@@ -22,6 +22,8 @@ namespace AutoKek
         bool isSomethingOnScreen = false;
         bool isPointChoosingMode = false;
         int twolinesmode = 0;
+        bool isPointClassifyMode = false;
+        bool isPointInPolygonMode = false;
 
 
         /// <summary>
@@ -52,6 +54,9 @@ namespace AutoKek
             buttonScale.Enabled = isAffineTransformationsEnabled;
             textScaleX.Enabled = isAffineTransformationsEnabled;
             textScaleY.Enabled = isAffineTransformationsEnabled;
+            var affineTransformationsEnabled = isAffineTransformationsEnabled && comboBoxShape.SelectedIndex == 1;
+            buttonClassifyPoint.Enabled = isAffineTransformationsEnabled && comboBoxShape.SelectedIndex == 1;
+            buttonIsPointInPolygon.Enabled = isAffineTransformationsEnabled && comboBoxShape.SelectedIndex == 1;
 
             isPointChoosingMode = isPointChoosing;
             buttonСhooseCentre.Visible = isPointChoosing;
@@ -73,6 +78,19 @@ namespace AutoKek
             } else if (isPointChoosingMode)
             {
                 onPointChosen(e.Location);
+            }
+            else if (isPointClassifyMode)
+            {
+                drawPoint(e);
+                isPointClassifyMode = false;
+                ClassifyPoint(polygonPointsForClassify[0], polygonPointsForClassify[1], e.Location);
+            }
+            else if (isPointInPolygonMode)
+            {
+                drawPoint(e);                
+                PointInPolygon(e.Location);
+                isPointInPolygonMode = false;
+                buttonIsPointInPolygon.Enabled = true;
             }
             if (twolinesmode==1)
             {

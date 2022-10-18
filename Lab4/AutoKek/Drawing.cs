@@ -40,7 +40,7 @@ namespace AutoKek
                 {
                     g.DrawLine(blackPen, polygonPoints.Last(), polygonPoints[0]);
                     setFlags(isAffineTransformationsEnabled: true);
-                    //buttonIsPointInPolygon.Enabled = true;
+                    buttonIsPointInPolygon.Enabled = true;
                     return;
                 }
                 g.DrawLine(blackPen, polygonPoints.Last(), e.Location);
@@ -80,7 +80,7 @@ namespace AutoKek
                 polygonPointsForClassify.Add(polygonPoints.First());
                 polygonPointsForClassify.Add(e.Location);
                 setFlags(isAffineTransformationsEnabled: true);
-                //buttonIsPointInPolygon.Enabled = false;
+                buttonIsPointInPolygon.Enabled = false;
             }
             else
             {
@@ -102,8 +102,20 @@ namespace AutoKek
                 }
             }
         }
+        
+        void drawLineWithDot(Point from, Point to)
+        {
+            g.DrawLine(blackPen, from, to);
+            g.FillEllipse(blackBrush, from.X - 3, from.Y - 3, 7, 7);
+        }
+        
         void drawPoint(MouseEventArgs e)
         {
+            if (!isPointInPolygonMode)
+            {
+                polygonPoints.Add(e.Location);
+            }
+            
             g.FillEllipse(blackBrush,e.X-3,e.Y-3,7,7);
             setFlags(isAffineTransformationsEnabled: true);
         }

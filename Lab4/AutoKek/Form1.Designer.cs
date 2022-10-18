@@ -47,7 +47,12 @@ namespace AutoKek
             this.labelChoodePoint = new System.Windows.Forms.Label();
             this.textScaleY = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
+            this.labelClassifyPoint = new System.Windows.Forms.Label();
+            this.buttonClassifyPoint = new System.Windows.Forms.Button();
+            this.labelConvexPolygon = new System.Windows.Forms.Label();
+            this.buttonIsPointInPolygon = new System.Windows.Forms.Button();
+            this.labelPointInPolygon = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize) (this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
@@ -77,7 +82,7 @@ namespace AutoKek
             // 
             this.comboBoxShape.Enabled = false;
             this.comboBoxShape.FormattingEnabled = true;
-            this.comboBoxShape.Items.AddRange(new object[] { "Полигон", "Отрезок", "Точка" });
+            this.comboBoxShape.Items.AddRange(new object[] {"Полигон", "Отрезок", "Точка"});
             this.comboBoxShape.Location = new System.Drawing.Point(13, 107);
             this.comboBoxShape.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxShape.Name = "comboBoxShape";
@@ -123,7 +128,7 @@ namespace AutoKek
             this.label1.Location = new System.Drawing.Point(13, 144);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 15);
+            this.label1.Size = new System.Drawing.Size(17, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Х:";
             // 
@@ -133,7 +138,7 @@ namespace AutoKek
             this.label2.Location = new System.Drawing.Point(87, 144);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 15);
+            this.label2.Size = new System.Drawing.Size(17, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Y:";
             // 
@@ -165,7 +170,7 @@ namespace AutoKek
             this.label3.Location = new System.Drawing.Point(13, 189);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 15);
+            this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Градусы:";
             // 
@@ -198,7 +203,7 @@ namespace AutoKek
             this.label4.Location = new System.Drawing.Point(13, 234);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 15);
+            this.label4.Size = new System.Drawing.Size(23, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "cХ:";
             // 
@@ -224,11 +229,10 @@ namespace AutoKek
             this.labelChoodePoint.Location = new System.Drawing.Point(7, 4);
             this.labelChoodePoint.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelChoodePoint.Name = "labelChoodePoint";
-            this.labelChoodePoint.Size = new System.Drawing.Size(205, 32);
+            this.labelChoodePoint.Size = new System.Drawing.Size(162, 25);
             this.labelChoodePoint.TabIndex = 4;
             this.labelChoodePoint.Text = "Выберите точку";
             this.labelChoodePoint.Visible = false;
-            
             // 
             // textScaleY
             // 
@@ -246,9 +250,59 @@ namespace AutoKek
             this.label5.Location = new System.Drawing.Point(82, 233);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 15);
+            this.label5.Size = new System.Drawing.Size(23, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "cY:";
+            // 
+            // labelClassifyPoint
+            // 
+            this.labelClassifyPoint.AutoSize = true;
+            this.labelClassifyPoint.Location = new System.Drawing.Point(757, 29);
+            this.labelClassifyPoint.Name = "labelClassifyPoint";
+            this.labelClassifyPoint.Size = new System.Drawing.Size(0, 13);
+            this.labelClassifyPoint.TabIndex = 5;
+            // 
+            // buttonClassifyPoint
+            // 
+            this.buttonClassifyPoint.Enabled = false;
+            this.buttonClassifyPoint.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonClassifyPoint.Location = new System.Drawing.Point(13, 407);
+            this.buttonClassifyPoint.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonClassifyPoint.Name = "buttonClassifyPoint";
+            this.buttonClassifyPoint.Size = new System.Drawing.Size(135, 44);
+            this.buttonClassifyPoint.TabIndex = 1;
+            this.buttonClassifyPoint.Text = "Классифицировать положение точки относительно ребра";
+            this.buttonClassifyPoint.UseVisualStyleBackColor = true;
+            this.buttonClassifyPoint.Click += new System.EventHandler(this.buttonClassifyPoint_Click);
+            // 
+            // labelConvexPolygon
+            // 
+            this.labelConvexPolygon.AutoSize = true;
+            this.labelConvexPolygon.Location = new System.Drawing.Point(728, 13);
+            this.labelConvexPolygon.Name = "labelConvexPolygon";
+            this.labelConvexPolygon.Size = new System.Drawing.Size(0, 13);
+            this.labelConvexPolygon.TabIndex = 6;
+            // 
+            // buttonIsPointInPolygon
+            // 
+            this.buttonIsPointInPolygon.Enabled = false;
+            this.buttonIsPointInPolygon.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonIsPointInPolygon.Location = new System.Drawing.Point(13, 361);
+            this.buttonIsPointInPolygon.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonIsPointInPolygon.Name = "buttonIsPointInPolygon";
+            this.buttonIsPointInPolygon.Size = new System.Drawing.Size(135, 44);
+            this.buttonIsPointInPolygon.TabIndex = 1;
+            this.buttonIsPointInPolygon.Text = "Проверить принадлежность точки полигону";
+            this.buttonIsPointInPolygon.UseVisualStyleBackColor = true;
+            this.buttonIsPointInPolygon.Click += new System.EventHandler(this.buttonIsPointInPolygon_Click);
+            // 
+            // labelPointInPolygon
+            // 
+            this.labelPointInPolygon.AutoSize = true;
+            this.labelPointInPolygon.Location = new System.Drawing.Point(728, 33);
+            this.labelPointInPolygon.Name = "labelPointInPolygon";
+            this.labelPointInPolygon.Size = new System.Drawing.Size(0, 13);
+            this.labelPointInPolygon.TabIndex = 7;
             // 
             // Form1
             // 
@@ -256,6 +310,11 @@ namespace AutoKek
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(998, 486);
+            this.Controls.Add(this.labelPointInPolygon);
+            this.Controls.Add(this.buttonIsPointInPolygon);
+            this.Controls.Add(this.labelConvexPolygon);
+            this.Controls.Add(this.buttonClassifyPoint);
+            this.Controls.Add(this.labelClassifyPoint);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
@@ -279,10 +338,20 @@ namespace AutoKek
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Автокад";
-            ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.canvas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label labelPointInPolygon;
+
+        private System.Windows.Forms.Button button1;
+
+        private System.Windows.Forms.Label labelConvexPolygon;
+
+        private System.Windows.Forms.Button buttonClassifyPoint;
+
+        private System.Windows.Forms.Label label6;
 
         #endregion
 
@@ -304,6 +373,8 @@ namespace AutoKek
         private System.Windows.Forms.Label labelChoodePoint;
         private System.Windows.Forms.TextBox textScaleY;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelClassifyPoint;
+        private System.Windows.Forms.Button buttonIsPointInPolygon;
     }
 }
 
