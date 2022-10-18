@@ -28,19 +28,34 @@ namespace AutoKek
         // Если одно ребро многоугольника соответствует вектору AB, а следующее за ним ребро соответствует вектору BC, то направление поворота = AB.x* BC.y - AB.y* BC.x
         private void PointInPolygon(Point p)
         {
-            // определение выпуклости многоугольника
+                 // определение выпуклости многоугольника
+                 CheckConvex(p, polygonPoints);
+
+                 // определение принадлежности точки многоугольнику
+                 CheckOuter(p, polygonPoints);
+        }
+
+        private void buttonIsPointInPolygon_Click(object sender, EventArgs e)
+        {
+            isPointInPolygonMode = true;
+            labelClassifyPoint.Text = "";
+
+        }
+
+        private void CheckConvex(Point p, List<Point> points)
+        {
             bool isConvexPolygon = true;
             bool sign = true, tempSign = true;
-            Point ab = new Point(polygonPoints[1].X - polygonPoints[0].X, polygonPoints[1].Y - polygonPoints[0].Y);
-            Point bc = new Point(polygonPoints[2].X - polygonPoints[1].X, polygonPoints[2].Y - polygonPoints[1].Y);
+            Point ab = new Point(points[1].X - points[0].X, points[1].Y - points[0].Y);
+            Point bc = new Point(points[2].X - points[1].X, points[2].Y - points[1].Y);
             double rot = ab.X * bc.Y - ab.Y * bc.X; // направление поворота
             if (rot < 0)
                 sign = false; // для проверки выпуклости
 
-            for (int i = 1; i < polygonPoints.Count-1; i++)
+            for (int i = 1; i < points.Count-1; i++)
             {
-                ab = new Point(polygonPoints[i].X - polygonPoints[i - 1].X, polygonPoints[i].Y - polygonPoints[i - 1].Y);
-                bc = new Point(polygonPoints[i+1].X - polygonPoints[i].X, polygonPoints[i+1].Y - polygonPoints[i].Y);
+                ab = new Point(points[i].X - points[i - 1].X, points[i].Y - points[i - 1].Y);
+                bc = new Point(points[i+1].X - points[i].X, points[i+1].Y - points[i].Y);
                 rot = ab.X * bc.Y - ab.Y * bc.X;
                 if (rot < 0)
                     tempSign = false;
@@ -49,67 +64,43 @@ namespace AutoKek
                 if (sign != tempSign) // если поворот отличается от остальных
                     isConvexPolygon = false;
             }
-            ab = new Point(polygonPoints[0].X - polygonPoints[polygonPoints.Count - 1].X, polygonPoints[0].Y - polygonPoints[polygonPoints.Count - 1].Y);
-            bc = new Point(polygonPoints[1].X - polygonPoints[0].X, polygonPoints[1].Y - polygonPoints[0].Y);
+
+            ab = new Point(points[0].X - points[points.Count - 1].X, points[0].Y - points[points.Count - 1].Y);
+            bc = new Point(points[1].X - points[0].X, points[1].Y - points[0].Y);
             rot = ab.X * bc.Y - ab.Y * bc.X;
             if (rot < 0)
                 tempSign = false;
-            else
-                tempSign = true;
             if (sign != tempSign) // если поворот отличается от остальных
                 isConvexPolygon = false;
-
             if (isConvexPolygon)
                 labelConvexPolygon.Text = "Выпуклый многоугольник";
             else
                 labelConvexPolygon.Text = "Невыпуклый многоугольник";
+        }
 
-
-            // определение принадлежности точки многоугольнику
+        private void CheckOuter(Point p, List<Point> points)
+        {
             bool inPolygon = false;
-            int counter = 0;
-            double xinters;
-            Point p1, p2;
-            int pointCount = polygonPoints.Count;
-            p1 = polygonPoints[0];
-            for (int i = 1; i <= pointCount; i++)
+            int j = points.Count() - 1;
+            for (int i = 0; i < points.Count(); i++)
             {
-                p2 = polygonPoints[i % pointCount];
-                if (p.Y > Math.Min(p1.Y, p2.Y)// Y контрольной точки больше минимума Y конца отрезка
-                && p.Y <= Math.Max(p1.Y, p2.Y))// Y контрольной точки меньше максимального Y конца отрезка
+                var p1 = points[i];
+                var p2 = points[j];
+                var checkY = p1.Y < p.Y && p2.Y >= p.Y || p2.Y < p.Y && p1.Y >= p.Y;
+                if (checkY)
                 {
-                    if (p.X <= Math.Max(p1.X, p2.X))// X контрольной точки меньше максимального X конечной точки сегмента изолинии (для оценки используйте левый луч контрольной точки).
+                    var checkX = p1.X + (p.Y - p1.Y) / (p2.Y - p1.Y) * (p2.X - p1.X) < p.X;
+                    if (checkX)
                     {
-                        if (p1.Y != p2.Y)// Отрезок не параллелен оси X
-                        {
-                            xinters = (p.Y - p1.Y) * (p2.X - p1.X) / (p2.Y - p1.Y) + p1.X;
-                            if (p1.X == p2.X || p.X <= xinters)
-                            {
-                                counter++;
-                            }
-                        }
+                        inPolygon = !inPolygon;
                     }
-
                 }
-                p1 = p2;
+                j = i;
             }
-
-            if (counter % 2 == 0)
-
-                inPolygon = false;
-            else
-                inPolygon = true;
             if (inPolygon)
                 labelPointInPolygon.Text = "Точка принадлежит";
             else
-                labelPointInPolygon.Text = "Точка не принадлежит"; 
-        }
-
-        private void buttonIsPointInPolygon_Click(object sender, EventArgs e)
-        {
-            isPointInPolygonMode = true;
-            labelClassifyPoint.Text = "";
-
+                labelPointInPolygon.Text = "Точка не принадлежит";
         }
 
         private void buttonClassifyPoint_Click(object sender, EventArgs e)
