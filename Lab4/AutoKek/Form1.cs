@@ -22,6 +22,7 @@ namespace AutoKek
         bool isSomethingOnScreen = false;
         bool isPointChoosingMode = false;
         int twolinesmode = 0;
+
         bool isPointClassifyMode = false;
         bool isPointInPolygonMode = false;
 
@@ -54,7 +55,10 @@ namespace AutoKek
             buttonScale.Enabled = isAffineTransformationsEnabled;
             textScaleX.Enabled = isAffineTransformationsEnabled;
             textScaleY.Enabled = isAffineTransformationsEnabled;
-            var affineTransformationsEnabled = isAffineTransformationsEnabled && comboBoxShape.SelectedIndex == 1;
+
+            buttonRotateLine.Enabled = isAffineTransformationsEnabled && comboBoxShape.SelectedIndex == 1;
+            buttonCrossLines.Enabled = isAffineTransformationsEnabled && comboBoxShape.SelectedIndex == 1;
+
             buttonClassifyPoint.Enabled = isAffineTransformationsEnabled && comboBoxShape.SelectedIndex == 1;
             buttonIsPointInPolygon.Enabled = isAffineTransformationsEnabled && comboBoxShape.SelectedIndex == 1;
 
@@ -95,7 +99,17 @@ namespace AutoKek
             if (twolinesmode==1)
             {
                 DrawSec(e);
+                
             }
+            if (twolinesmode == 2)
+            {
+               // DrawSec(e);
+                Point p=CrossLines();
+                if (p.X!=int.MaxValue && p.Y!=int.MaxValue)
+                g.FillEllipse(new SolidBrush(Color.Red), p.X - 3, p.Y - 3, 7, 7);
+                setFlags();
+            }
+
         }
 
         private void comboBoxShape_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,5 +118,7 @@ namespace AutoKek
             polygonPoints.Clear();
             polygonPointsForClassify.Clear();
         }
+
+        
     }
 }
