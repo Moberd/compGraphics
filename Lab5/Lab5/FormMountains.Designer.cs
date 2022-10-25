@@ -37,15 +37,18 @@ namespace Lab5
             this.label2 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.canvas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
             // 
             this.canvas.Location = new System.Drawing.Point(0, 0);
+            this.canvas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.canvas.MaximumSize = new System.Drawing.Size(682, 325);
+            this.canvas.MinimumSize = new System.Drawing.Size(682, 325);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(910, 500);
+            this.canvas.Size = new System.Drawing.Size(682, 325);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
             this.canvas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseClick);
@@ -53,9 +56,10 @@ namespace Lab5
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(23, 23);
+            this.button1.Location = new System.Drawing.Point(17, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 30);
+            this.button1.Size = new System.Drawing.Size(125, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Нарисовать границы";
             this.button1.UseVisualStyleBackColor = true;
@@ -64,17 +68,19 @@ namespace Lab5
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 67);
+            this.label1.Location = new System.Drawing.Point(16, 44);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 20);
+            this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Коэф. шероховатости";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 253);
+            this.button2.Location = new System.Drawing.Point(9, 164);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 34);
+            this.button2.Size = new System.Drawing.Size(103, 22);
             this.button2.TabIndex = 4;
             this.button2.Text = "Рисовать горы";
             this.button2.UseVisualStyleBackColor = true;
@@ -82,9 +88,10 @@ namespace Lab5
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(15, 302);
+            this.button3.Location = new System.Drawing.Point(11, 196);
+            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(138, 30);
+            this.button3.Size = new System.Drawing.Size(104, 19);
             this.button3.TabIndex = 5;
             this.button3.Text = "Очистить";
             this.button3.UseVisualStyleBackColor = true;
@@ -93,53 +100,36 @@ namespace Lab5
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 140);
+            this.label2.Location = new System.Drawing.Point(16, 91);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 20);
+            this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "Глубина рекурсии";
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(23, 175);
+            this.trackBar1.Location = new System.Drawing.Point(17, 114);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(130, 56);
+            this.trackBar1.Size = new System.Drawing.Size(98, 45);
             this.trackBar1.TabIndex = 7;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "0,1",
-            "0,2",
-            "0,3",
-            "0,4",
-            "0,5",
-            "0,6",
-            "0,7",
-            "0,8",
-            "0,9",
-            "1",
-            "1,1",
-            "1,2",
-            "1,3",
-            "1,4",
-            "1,5",
-            "1,6",
-            "1,7",
-            "1,8",
-            "1,9",
-            "2"});
-            this.comboBox1.Location = new System.Drawing.Point(23, 100);
+            this.comboBox1.Items.AddRange(new object[] {"0,1", "0,2", "0,3", "0,4", "0,5", "0,6", "0,7", "0,8", "0,9", "1", "1,1", "1,2", "1,3", "1,4", "1,5", "1,6", "1,7", "1,8", "1,9", "2"});
+            this.comboBox1.Location = new System.Drawing.Point(17, 65);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 28);
+            this.comboBox1.Size = new System.Drawing.Size(114, 21);
             this.comboBox1.TabIndex = 8;
             // 
             // FormMountains
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 500);
+            this.ClientSize = new System.Drawing.Size(681, 325);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.label2);
@@ -148,13 +138,15 @@ namespace Lab5
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.canvas);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximumSize = new System.Drawing.Size(697, 364);
+            this.MinimumSize = new System.Drawing.Size(697, 364);
             this.Name = "FormMountains";
             this.Text = "FormMountains";
-            ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.canvas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
