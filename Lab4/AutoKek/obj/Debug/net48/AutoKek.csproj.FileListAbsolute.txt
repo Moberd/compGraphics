@@ -11,3 +11,16 @@ C:\Users\ocher\RiderProjects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.e
 C:\Users\ocher\RiderProjects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.pdb
 C:\Users\ocher\RiderProjects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.Form1.resources
 C:\Users\ocher\RiderProjects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.csproj.GenerateResource.cache
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\bin\Debug\net48\AutoKek.exe.config
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\bin\Debug\net48\AutoKek.exe
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\bin\Debug\net48\AutoKek.pdb
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.Form1.resources
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.csproj.GenerateResource.cache
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.AssemblyInfo.cs
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.exe
+C:\Users\User\Desktop\projects\compGraphics\Lab4\AutoKek\obj\Debug\net48\AutoKek.pdb

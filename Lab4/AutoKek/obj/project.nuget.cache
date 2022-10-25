@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lqVHGhDBiUuKTw+IC4UK59pSgdJt4FGrjFxUlCMlEnVvDGl8AOK84Pu+gv6aFNggcJMaF1BO99VQxInLwZxiow==",
+  "dgSpecHash": "g3UAF6RdnneMKJHanZHK9eW8o2v2nLryKFc35EoQG8nYUNpCQay0rxx2DN6Fai7UdpRykJsAG7c2pLxNGkHeNQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\User\\Desktop\\projects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net48\\1.0.2\\microsoft.netframework.referenceassemblies.net48.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
