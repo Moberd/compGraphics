@@ -103,7 +103,7 @@ namespace AutoKek
             }
         }
         
-        void drawLineWithDot(Point from, Point to)
+        void drawLineWithDot(PointF from, PointF to)
         {
             g.DrawLine(blackPen, from, to);
             g.FillEllipse(blackBrush, from.X - 3, from.Y - 3, 7, 7);

@@ -32,7 +32,7 @@ namespace AutoKek
             setFlags(isPointChoosing: true);
         }
 
-        void onPointChosen(Point p)
+        void onPointChosen(PointF p)
         {
             if (isRotating)
             {
@@ -52,34 +52,44 @@ namespace AutoKek
         private void buttonСhooseCentre_Click(object sender, EventArgs e)
         {
             setFlags();
-            var center = new Point(0, 0);
+            var center = new PointF(0, 0);
             foreach (var p in polygonPoints)
             {
                 center.X += p.X;
                 center.Y += p.Y;
             }
-            center.X /= polygonPoints.Count;
-            center.Y /= polygonPoints.Count;
+            center.X /= (float)polygonPoints.Count;
+            center.Y /= (float)polygonPoints.Count;
             onPointChosen(center);
         }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            setFlags();
+            var center = new PointF(0, 0);
+            center.X = (float)(canvas.Width / 2.0);
+            center.Y = (float)(canvas.Height / 2.0);
+            onPointChosen(center);
+        }
+        
 
         private double degreesToRadians(double angle)
         {
             return Math.PI * angle / 180.0;
         }
 
-        void rotateAroundPoint(Point rpoint, Size screenSize)
+        void rotateAroundPoint(PointF rpoint, SizeF screenSize)
         {
             double angle = double.Parse(textAngle.Text);
             for(int i = 0; i < polygonPoints.Count; i++)
             {
                 var shift1 = new Matrix(3,3).fillAffine(1, 0, 0, 1,  -rpoint.X, -rpoint.Y);
-                var rotation = new Matrix(3, 3).fillAffine(Math.Cos(degreesToRadians(angle)), -Math.Sin(degreesToRadians(angle)), Math.Sin(degreesToRadians(angle)), Math.Cos(degreesToRadians(angle)), 0, 0);
+                var rotation = new Matrix(3, 3).fillAffine((float)Math.Cos(degreesToRadians(angle)), (float)-Math.Sin(degreesToRadians(angle)), (float)Math.Sin(degreesToRadians(angle)), (float)Math.Cos(degreesToRadians(angle)), 0, 0);
                 var shift2 = new Matrix(3, 3).fillAffine(1, 0, 0, 1, rpoint.X, rpoint.Y);
                 var vals = new Matrix(1, 3).fill(polygonPoints[i].X, polygonPoints[i].Y, 1);
                 var prom = (shift1 * rotation * shift2);
                 var res = vals * prom;
-                polygonPoints[i] = new Point((int)res[0,0],(int)(res[0,1]));
+                polygonPoints[i] = new PointF(res[0,0],res[0,1]);
             }
         }
 
@@ -90,14 +100,14 @@ namespace AutoKek
                 var shift = new Matrix(3, 3).fillAffine(1, 0, 0, 1, dx, dy);
                 var vals = new Matrix(1, 3).fill(polygonPoints[i].X, polygonPoints[i].Y, 1);
                 var res = vals * shift;
-                polygonPoints[i] = new Point((int)res[0, 0], (int)(res[0, 1]));
+                polygonPoints[i] = new PointF(res[0, 0], res[0, 1]);
             }
         }
 
-        void scaleAroundPoint(Point rpoint)
+        void scaleAroundPoint(PointF rpoint)
         {
-            double scaleX = double.Parse(textScaleX.Text);
-            double scaleY = double.Parse(textScaleY.Text);
+            float scaleX = float.Parse(textScaleX.Text);
+            float scaleY = float.Parse(textScaleY.Text);
             for (int i = 0; i < polygonPoints.Count; i++)
             {
                 var shift1 = new Matrix(3, 3).fillAffine(1, 0, 0, 1, -rpoint.X, -rpoint.Y);
@@ -106,7 +116,7 @@ namespace AutoKek
                 var vals = new Matrix(1, 3).fill(polygonPoints[i].X, polygonPoints[i].Y, 1);
                 var prom = (shift1 * scaling * shift2);
                 var res = vals * prom;
-                polygonPoints[i] = new Point((int)res[0, 0], (int)(res[0, 1]));
+                polygonPoints[i] = new PointF(res[0, 0], res[0, 1]);
             }
         }
     }
