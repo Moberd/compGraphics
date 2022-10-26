@@ -41,6 +41,8 @@ namespace Lab3Rastr
 
         Pen pen_fill = new Pen(Color.Black);
 
+        //Pen p;
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             mouse_Down = true;
@@ -59,6 +61,7 @@ namespace Lab3Rastr
             {
                 if (is_fill)
                     FloodFill(e.X, e.Y);
+                    //FloodFill_Old(e.X, e.Y);
             }
             else if (radioButton2.Checked)
             {
@@ -74,7 +77,8 @@ namespace Lab3Rastr
 
         }
 
-        Point[] points = new Point[2];
+
+    Point[] points = new Point[2];
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             is_fill = false;
@@ -88,8 +92,8 @@ namespace Lab3Rastr
             }
         }
 
-
-        void FloodFill(int x, int y)
+        //Старый способ
+        void FloodFill_Old(int x, int y)
         {
             Color col = bmp.GetPixel(x, y);
             pen_fill.Color = colorDialog1.Color;
@@ -121,29 +125,71 @@ namespace Lab3Rastr
                 while (bmp.GetPixel(++check_x, y + 1) != col && check_x < right_x_bound) { }
                 if (y + 1 < pictureBox1.Height - 1 && col == bmp.GetPixel(check_x, y + 1))
                 {
-                    FloodFill(check_x, y + 1);
+                    FloodFill_Old(check_x, y + 1);
                 }
 
                 check_x = right_x_bound;
                 while (bmp.GetPixel(--check_x, y + 1) != col && check_x > left_x_bound) { }
                 if (y + 1 < pictureBox1.Height - 1 && col == bmp.GetPixel(check_x, y + 1))
                 {
-                    FloodFill(check_x, y + 1);
+                    FloodFill_Old(check_x, y + 1);
                 }
 
                 check_x = left_x_bound;
                 while (bmp.GetPixel(++check_x, y - 1) != col && check_x < right_x_bound) { }
                 if (y - 1 > 0 && col == bmp.GetPixel(check_x, y - 1))
                 {
-                    FloodFill(check_x, y - 1);
+                    FloodFill_Old(check_x, y - 1);
                 }
 
                 check_x = right_x_bound;
                 while (bmp.GetPixel(--check_x, y - 1) != col && check_x > left_x_bound) { }
                 if (y - 1 > 0 && col == bmp.GetPixel(check_x, y - 1))
                 {
-                    FloodFill(check_x, y - 1);
+                    FloodFill_Old(check_x, y - 1);
                 }
+            }
+        }
+
+        // Новый способ
+        void FloodFill(int x, int y)
+        {
+            //Bitmap bitmap = pictureBox1.Image as Bitmap;
+            Color currentColor = bmp.GetPixel(x, y);
+
+            if (!(pen_fill.Color.R == currentColor.R && pen_fill.Color.G == currentColor.G && pen_fill.Color.B == currentColor.B))
+            {
+
+                int leftgr = x;//левая граница
+                int rightgr = x;//правая граница
+                Color oldcolor = bmp.GetPixel(leftgr, rightgr);
+
+                while ((bmp.GetPixel(leftgr, y) == oldcolor) && (leftgr >= 0))
+                    leftgr--;
+
+                while ((bmp.GetPixel(rightgr, y) == oldcolor) && (rightgr <= pictureBox1.Width))
+                    rightgr++;
+
+                if (leftgr + 1 == rightgr - 1)
+                {
+                    bmp.SetPixel(leftgr + 1, y, pen_fill.Color);
+                }
+                else
+                {
+                    for (int i = leftgr + 1; i < rightgr; i++)
+                    {
+                        bmp.SetPixel(i, y, pen_fill.Color);
+                    }
+                }
+                pictureBox1.Invalidate();
+
+                if (y + 1 < bmp.Height)
+                    for (int i = leftgr + 1; i < rightgr; ++i)
+                        FloodFill(i, y + 1);
+
+                if (y - 1 > 0)
+                    for (int i = leftgr + 1; i < rightgr; ++i)
+                        FloodFill(i, y - 1);
             }
         }
 
