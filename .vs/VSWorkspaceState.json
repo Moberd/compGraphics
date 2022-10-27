@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Lab2",
     "\\Lab3",
-    "\\Lab3\\Lab3"
+    "\\Lab3\\Lab3",
+    "\\Lab4"
   ],
-  "SelectedNode": "\\Lab3\\Lab3.sln",
+  "SelectedNode": "\\Lab3\\Lab3\\FillandHighlight.cs",
   "PreviewInSolutionExplorer": false
 }
