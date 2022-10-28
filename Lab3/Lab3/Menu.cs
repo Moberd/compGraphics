@@ -37,5 +37,13 @@ namespace Lab3Rastr
             GradientTraing gradientTraing = new GradientTraing();
             gradientTraing.Show(this);
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FillPicture fillpicture = new FillPicture();
+            fillpicture.Show(this);
+
+        }
     }
 }

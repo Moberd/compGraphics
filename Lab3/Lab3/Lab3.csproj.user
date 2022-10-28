@@ -4,6 +4,9 @@
     <Compile Update="FillandHighlight.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FillPicture.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GradientTraing.cs">
       <SubType>Form</SubType>
     </Compile>

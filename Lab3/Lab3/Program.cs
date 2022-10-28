@@ -16,7 +16,7 @@ namespace Lab3Rastr
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FillandHighlight());
+            Application.Run(new Menu());
         }
     }
 }
