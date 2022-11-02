@@ -12,7 +12,7 @@ namespace Lab5
 {
 
 
-    public partial class FormMountains : Form
+    public partial class FormMountains : System.Windows.Forms.Form
     {
         bool drawingMode;
         double n;
@@ -20,28 +20,42 @@ namespace Lab5
         public FormMountains() 
         {
             InitializeComponent();
-            trackBar1.Scroll += trackBar1_Scroll;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             g = canvas.CreateGraphics();
             canvas.Image = new Bitmap(1300, 900);
             drawingMode = false;
         }
-        List<Point> polygonPoints = new List<Point>();
-        List<segment> Mountains = new List<segment>();
-        
         SolidBrush blackBrush = new SolidBrush(Color.Black);
-        Pen blackPen = new Pen(Color.Black, 3);
-        Pen blackPen2 = new Pen(Color.Black, 1);
-        Graphics g;
+        private int x1, y1, x2, y2;
+        private List<Point> points = new List<Point>();
+        private Pen pen = new Pen(Color.Brown);
+        private Graphics g;
+        private int count = 0;
+
 
         void drawPoint(MouseEventArgs e)
         {
+            if (count == 0)
+            {
+                Point p1 = e.Location;
+                x1 = p1.X;
+                y1 = p1.Y;
+                points.Add(p1);
+                count++;
+                g.FillEllipse(blackBrush, e.X - 3, e.Y - 3, 7, 7);
+            }
+            
+            else if (count == 1)
+            {
+                Point p2 = e.Location;
+                x2 = p2.X;
+                y2 = p2.Y;
+                points.Add(p2);
+                count++;
+                g.FillEllipse(blackBrush, e.X - 3, e.Y - 3, 7, 7);
+                g.DrawLine(pen, points[0], p2);
+            }
 
-
-            polygonPoints.Add(e.Location);
-            if (polygonPoints.Count == 2)
-                Mountains.Add(new segment(polygonPoints[0], polygonPoints[1]));
-            g.FillEllipse(blackBrush, e.X - 3, e.Y - 3, 7, 7);
+            
 
         }
         void canvas_MouseClick(object sender, MouseEventArgs e)
@@ -59,77 +73,77 @@ namespace Lab5
         {
             drawingMode = true;
         }
-        void DrawMountain()
-        {
-            g.Clear(Color.White);
-            r = double.Parse(comboBox1.SelectedItem.ToString());//коэфф шероховатости зададим сами
-                                            // n= double.Parse(textBox2.Text);//глубина рекурсии задается пользователем
-            n = trackBar1.Value;
-
-
-            for (int j = 1; j <= (int)n; j++)
-            {
-                Random rnd = new Random();
-                List<segment> drawpoints = new List<segment>();
-                foreach (segment x in Mountains)
-                {
-                    Point left = x.l;
-                    Point right = x.r;
-                     double i = Math.Abs(left.X - right.X)* Math.Abs(left.X - right.X) + Math.Abs(left.Y - right.Y) * Math.Abs(left.Y - right.Y);
-                    i = Math.Sqrt(i);
-                    int c = (left.X + right.X) / 2;
-                    double y = (left.Y + right.Y) / 2 + (rnd.NextDouble() - 0.5)*r * i;
-                    Point center = new Point(c, (int)y);
-                    drawpoints.Add(new segment(left, center));
-                    drawpoints.Add(new segment(center, right));
-                }
-                Mountains = drawpoints;
-            }
-            DrawMountainsHelp();
-        }
-        void DrawSegment(segment s)
-        {
-            g.DrawLine(blackPen2, s.l, s.r);
-        }
-        void DrawMountainsHelp()
-        {
-            foreach (segment x in Mountains)
-                DrawSegment(x);
-        }
+        
         private void button2_Click(object sender, EventArgs e)
         {
             DrawMountain();
 
         }
+        private void DrawMountain()
+        {
+            g.Clear(Form.DefaultBackColor);
+           
+            List<Point> points_new = new List<Point>();
+
+            for (long i=0;i<points.Count-1;i++)
+            {
+                //концы текущего отрезка
+                x1 = points[(int)i].X;
+                y1 = points[(int)i].Y;
+                x2 = points[(int)(i + 1)].X;
+                y2 = points[(int)(i + 1)].Y;
+
+                //длина отрезка
+                var l = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+                {
+                    var R = double.Parse(comboBox1.SelectedItem.ToString());
+                    var r = new Random();
+       
+                    //координаты новой точки
+                    var y = (int)((y1 + y2) / 2.0 + r.NextDouble()*2*R*l - R*l);
+                    var x = (int)((x1 + x2) / 2.0);
+
+                    Point p = new Point(x, y);
+                    points_new.Add(p);
+                }
+            }
+
+            int ind = 1;
+            for(long i=0;i<points_new.Count;i++)
+            {
+                if (ind < points.Count)
+                {
+                    AddByIndex(ref points, ind, points_new[(int)i]);
+                    ind += 2;
+                }
+            }
+
+            for (int i = 0; i < points.Count-1; i++)
+            {
+                g.DrawLine(pen, points[(int)i], points[(int)(i + 1)]);
+            }
+        }
+        
+        private void AddByIndex(ref List<Point> lp, int ind,Point p)
+        {
+            lp.Add(p);
+            int i = lp.Count - 1;
+            while(i-1>=ind)
+            {
+                Point pp = lp[i-1];
+                lp[i - 1] = lp[i];
+                lp[i] = pp;
+                i--;
+            }
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
             g.Clear(Color.White);
-                polygonPoints.Clear();
-                Mountains.Clear();
+            points.Clear();
+            count = 0;
+            drawingMode = false;
 
-                drawingMode = false;
-
-        }
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            label2.Text = String.Format("Глубина рекурсии: {0}", trackBar1.Value);
-        }
-        void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedState = comboBox1.SelectedItem.ToString();
         }
     }
-    class segment
-    {
-        public Point l;
-        public Point r;
-        public
-        segment(Point p1, Point p2)
-        {
-            l = p1;
-            r = p2;
-        }
-
-    };
 }
