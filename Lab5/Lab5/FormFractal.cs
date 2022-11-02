@@ -140,9 +140,7 @@ namespace Lab5
             // меняем местами значения диапазона, если пользователь ввёл неверно
             if (randFrom > randTo)
             {
-                int temp = randFrom;
-                randFrom = randTo;
-                randTo = temp;
+                (randFrom, randTo) = (randTo, randFrom);
             }
 
             // разбиваем каждое правило
@@ -183,13 +181,12 @@ namespace Lab5
             Random rand = new Random();
             int randRotate = 0;
             int count = 0;
-            int stepColor = generation == 0 ? 255 / generation : 255 / generation+1;
             Color color = Color.FromArgb(64, 0, 0);
-            Dictionary<PointF, Tuple<Color, float>> gr = new Dictionary<PointF, Tuple<Color, float>>(), br = new Dictionary<PointF, Tuple<Color, float>>();
+            Dictionary<PointF, Tuple<Color, float>> gr = new Dictionary<PointF, Tuple<Color, float>>();
 
             float width = 7;
             if (fileName == "..\\..\\..\\L-systems\\ШирокоеДерево.txt")
-                width = 14; // для красоты с:
+                width = 14;
 
             foreach (char lex in rule)
             {
@@ -258,8 +255,10 @@ namespace Lab5
             // масштабируем список точек
             for (int i = 0; i < points.Count(); i++)
             {
-                float scaleX = center.X + (points[i].Item1.X - fractal.X) * step, scaleY = center.Y + (points[i].Item1.Y - fractal.Y) * step;
-                float scaleNextX = center.X + (points[i].Item2.X - fractal.X) * step, scaleNextY = center.Y + (points[i].Item2.Y - fractal.Y) * step;
+                float scaleX = center.X + (points[i].Item1.X - fractal.X) * step, 
+                    scaleY = center.Y + (points[i].Item1.Y - fractal.Y) * step;
+                float scaleNextX = center.X + (points[i].Item2.X - fractal.X) * step, 
+                    scaleNextY = center.Y + (points[i].Item2.Y - fractal.Y) * step;
                 scalePoints[i] = new Tuple<PointF, PointF>(new PointF(scaleX, scaleY), new PointF(scaleNextX, scaleNextY));
             }
 
@@ -269,8 +268,10 @@ namespace Lab5
                     g.DrawLine(new Pen(gr[points[i].Item1].Item1, gr[points[i].Item1].Item2), scalePoints[i].Item1, scalePoints[i].Item2);
             }
             else
+            {
                 for (int i = 0; i < points.Count(); ++i)
                     g.DrawLine(new Pen(Color.Black), scalePoints[i].Item1, scalePoints[i].Item2);
+            }
 
             pictureBox1.Invalidate();
         }

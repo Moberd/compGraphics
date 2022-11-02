@@ -36,6 +36,8 @@ namespace Lab5
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize) (this.canvas)).BeginInit();
+
+   
             this.SuspendLayout();
             // 
             // canvas
@@ -93,11 +95,30 @@ namespace Lab5
             this.button3.Text = "Очистить";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {"0,1", "0,2", "0,3", "0,4", "0,5", "0,6", "0,7", "0,8", "0,9", "1", "1,1", "1,2", "1,3", "1,4", "1,5", "1,6", "1,7", "1,8", "1,9", "2"});
+            this.comboBox1.Items.AddRange(new object[] {
+            "0,1",
+            "0,2",
+            "0,3",
+            "0,4",
+            "0,5",
+            "0,6",
+            "0,7",
+            "0,8",
+            "0,9",
+            "1",
+            "1,1",
+            "1,2",
+            "1,3",
+            "1,4",
+            "1,5",
+            "1,6",
+            "1,7",
+            "1,8",
+            "1,9",
+            "2"});
             this.comboBox1.Location = new System.Drawing.Point(17, 65);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
@@ -119,10 +140,13 @@ namespace Lab5
             this.MaximumSize = new System.Drawing.Size(697, 364);
             this.MinimumSize = new System.Drawing.Size(697, 364);
             this.Name = "FormMountains";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMountains";
             ((System.ComponentModel.ISupportInitialize) (this.canvas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

@@ -47,7 +47,17 @@ namespace Lab5
             // ComboBoxLSystemChange
             // 
             this.ComboBoxLSystemChange.FormattingEnabled = true;
-            this.ComboBoxLSystemChange.Items.AddRange(new object[] { "Кривая Коха", "Снежинка Коха", "Треугольник Серпинского", "Ковер Серпинского", "Шестиугольная кривая Госпера", "Кривая Гильберта", "Кривая Дракона", "Высокое Дерево", "Широкое Дерево", "Куст" });
+            this.ComboBoxLSystemChange.Items.AddRange(new object[] {
+            "Кривая Коха",
+            "Снежинка Коха",
+            "Треугольник Серпинского",
+            "Ковер Серпинского",
+            "Шестиугольная кривая Госпера",
+            "Кривая Гильберта",
+            "Кривая Дракона",
+            "Высокое Дерево",
+            "Широкое Дерево",
+            "Куст"});
             this.ComboBoxLSystemChange.Location = new System.Drawing.Point(9, 57);
             this.ComboBoxLSystemChange.Name = "ComboBoxLSystemChange";
             this.ComboBoxLSystemChange.Size = new System.Drawing.Size(171, 21);
@@ -68,7 +78,7 @@ namespace Lab5
             this.labelGeneration.AutoSize = true;
             this.labelGeneration.Location = new System.Drawing.Point(9, 115);
             this.labelGeneration.Name = "labelGeneration";
-            this.labelGeneration.Size = new System.Drawing.Size(71, 15);
+            this.labelGeneration.Size = new System.Drawing.Size(63, 13);
             this.labelGeneration.TabIndex = 2;
             this.labelGeneration.Text = "Поколение";
             // 
@@ -87,7 +97,7 @@ namespace Lab5
             this.labelRandom.AutoSize = true;
             this.labelRandom.Location = new System.Drawing.Point(43, 194);
             this.labelRandom.Name = "labelRandom";
-            this.labelRandom.Size = new System.Drawing.Size(81, 15);
+            this.labelRandom.Size = new System.Drawing.Size(71, 13);
             this.labelRandom.TabIndex = 4;
             this.labelRandom.Text = "Случайность";
             // 
@@ -96,7 +106,7 @@ namespace Lab5
             this.labelRandomFrom.AutoSize = true;
             this.labelRandomFrom.Location = new System.Drawing.Point(8, 224);
             this.labelRandomFrom.Name = "labelRandomFrom";
-            this.labelRandomFrom.Size = new System.Drawing.Size(21, 15);
+            this.labelRandomFrom.Size = new System.Drawing.Size(18, 13);
             this.labelRandomFrom.TabIndex = 5;
             this.labelRandomFrom.Text = "от";
             // 
@@ -105,7 +115,7 @@ namespace Lab5
             this.labelRandomTo.AutoSize = true;
             this.labelRandomTo.Location = new System.Drawing.Point(76, 224);
             this.labelRandomTo.Name = "labelRandomTo";
-            this.labelRandomTo.Size = new System.Drawing.Size(21, 15);
+            this.labelRandomTo.Size = new System.Drawing.Size(19, 13);
             this.labelRandomTo.TabIndex = 6;
             this.labelRandomTo.Text = "до";
             // 
@@ -148,7 +158,7 @@ namespace Lab5
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 15);
+            this.label1.Size = new System.Drawing.Size(105, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Выбрать L-систему";
             // 
@@ -170,10 +180,13 @@ namespace Lab5
             this.Controls.Add(this.textBoxChangeGeneration);
             this.Controls.Add(this.ComboBoxLSystemChange);
             this.Name = "FormFractal";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormFractal";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
