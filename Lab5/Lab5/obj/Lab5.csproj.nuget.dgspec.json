@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab5\\Lab5\\Lab5.csproj": {}
+    "C:\\Users\\Admin\\Source\\Repos\\compGraphics\\Lab5\\Lab5\\Lab5.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab5\\Lab5\\Lab5.csproj": {
+    "C:\\Users\\Admin\\Source\\Repos\\compGraphics\\Lab5\\Lab5\\Lab5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab5\\Lab5\\Lab5.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Source\\Repos\\compGraphics\\Lab5\\Lab5\\Lab5.csproj",
         "projectName": "Lab5",
-        "projectPath": "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab5\\Lab5\\Lab5.csproj",
-        "packagesPath": "C:\\Users\\ocher\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab5\\Lab5\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Source\\Repos\\compGraphics\\Lab5\\Lab5\\Lab5.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Source\\Repos\\compGraphics\\Lab5\\Lab5\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ocher\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,7 +39,7 @@
       "frameworks": {
         "net48": {
           "targetAlias": "net48",
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

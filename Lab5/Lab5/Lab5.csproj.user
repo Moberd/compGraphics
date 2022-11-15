@@ -4,5 +4,14 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormBezier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormFractal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormMountains.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
