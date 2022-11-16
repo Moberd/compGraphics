@@ -28,7 +28,7 @@ namespace Lab6
                 drawAxis();
             }
             drawShape(currentShape);
-            btnShowAxis.Text = isAxisVisible ? "Скрыть точки и оси" : "Показать точки и оси";
+            btnShowAxis.Text = isAxisVisible ? "Скрыть оси" : "Показать оси";
         }
         private void buttonShape_Click(object sender, EventArgs e)
         {

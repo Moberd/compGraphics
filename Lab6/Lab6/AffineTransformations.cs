@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -157,7 +158,7 @@ namespace Lab6
                 p1 = p2;
                 p2 = tmp;
             }
-
+            
             Point vector = new Point(p2.Xf - p1.Xf, p2.Yf - p1.Yf, p2.Zf - p1.Zf);//прямая, вокруг которой будем вращать
             // int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
             //int B = p2.X - p1.X;//вектор нормали 
