@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\projects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj": {}
+    "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\projects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj": {
+    "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\projects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj",
+        "projectUniqueName": "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj",
         "projectName": "AutoKek",
-        "projectPath": "C:\\Users\\User\\Desktop\\projects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\projects\\compGraphics\\Lab4\\AutoKek\\obj\\",
+        "projectPath": "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab4\\AutoKek\\AutoKek.csproj",
+        "packagesPath": "C:\\Users\\ocher\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ocher\\RiderProjects\\compGraphics\\Lab4\\AutoKek\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ocher\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -42,15 +43,7 @@
       "frameworks": {
         "net48": {
           "targetAlias": "net48",
-          "dependencies": {
-            "Microsoft.NETFramework.ReferenceAssemblies": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[1.0.2, )",
-              "autoReferenced": true
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

@@ -12,9 +12,9 @@ namespace AutoKek
         // Положение точки относительно направленного ребра
         // yb·xa - xb·ya > 0 => b слева от Oa    
         // yb·xa - xb·ya < 0 => b справа от Oa
-        private void ClassifyPoint(Point edgeStart, Point edgeEnd, Point p)
+        private void ClassifyPoint(PointF edgeStart, PointF edgeEnd, PointF p)
         {
-            int res = (p.X - edgeStart.X) * (edgeEnd.Y - edgeStart.Y) - (p.Y - edgeStart.Y) * (edgeEnd.X - edgeStart.X);
+            float res = (p.X - edgeStart.X) * (edgeEnd.Y - edgeStart.Y) - (p.Y - edgeStart.Y) * (edgeEnd.X - edgeStart.X);
             if (res > 0)
                 labelClassifyPoint.Text = "Точка находится слева от ребра";
             else if (res < 0)
@@ -26,7 +26,7 @@ namespace AutoKek
         // Положение точки относительно многоугольника
         // Многоугольник будет выпуклым если при его обходе в каждой тройке последовательных вершин происходит поворот всегда в одну и ту же сторону.
         // Если одно ребро многоугольника соответствует вектору AB, а следующее за ним ребро соответствует вектору BC, то направление поворота = AB.x* BC.y - AB.y* BC.x
-        private void PointInPolygon(Point p)
+        private void PointInPolygon(PointF p)
         {
                  // определение выпуклости многоугольника
                  CheckConvex(p, polygonPoints);
@@ -42,20 +42,20 @@ namespace AutoKek
 
         }
 
-        private void CheckConvex(Point p, List<Point> points)
+        private void CheckConvex(PointF p, List<PointF> points)
         {
             bool isConvexPolygon = true;
             bool sign = true, tempSign = true;
-            Point ab = new Point(points[1].X - points[0].X, points[1].Y - points[0].Y);
-            Point bc = new Point(points[2].X - points[1].X, points[2].Y - points[1].Y);
+            PointF ab = new PointF(points[1].X - points[0].X, points[1].Y - points[0].Y);
+            PointF bc = new PointF(points[2].X - points[1].X, points[2].Y - points[1].Y);
             double rot = ab.X * bc.Y - ab.Y * bc.X; // направление поворота
             if (rot < 0)
                 sign = false; // для проверки выпуклости
 
             for (int i = 1; i < points.Count-1; i++)
             {
-                ab = new Point(points[i].X - points[i - 1].X, points[i].Y - points[i - 1].Y);
-                bc = new Point(points[i+1].X - points[i].X, points[i+1].Y - points[i].Y);
+                ab = new PointF(points[i].X - points[i - 1].X, points[i].Y - points[i - 1].Y);
+                bc = new PointF(points[i+1].X - points[i].X, points[i+1].Y - points[i].Y);
                 rot = ab.X * bc.Y - ab.Y * bc.X;
                 if (rot < 0)
                     tempSign = false;
@@ -65,8 +65,8 @@ namespace AutoKek
                     isConvexPolygon = false;
             }
 
-            ab = new Point(points[0].X - points[points.Count - 1].X, points[0].Y - points[points.Count - 1].Y);
-            bc = new Point(points[1].X - points[0].X, points[1].Y - points[0].Y);
+            ab = new PointF(points[0].X - points[points.Count - 1].X, points[0].Y - points[points.Count - 1].Y);
+            bc = new PointF(points[1].X - points[0].X, points[1].Y - points[0].Y);
             rot = ab.X * bc.Y - ab.Y * bc.X;
             if (rot < 0)
                 tempSign = false;
@@ -78,7 +78,7 @@ namespace AutoKek
                 labelConvexPolygon.Text = "Невыпуклый многоугольник";
         }
 
-        private void CheckOuter(Point p, List<Point> points)
+        private void CheckOuter(PointF p, List<PointF> points)
         {
             bool inPolygon = false;
             int j = points.Count() - 1;

@@ -8,7 +8,7 @@ namespace AutoKek
 {
     class Matrix
     {
-        double [,] matr;
+        float [,] matr;
         int rowCount;
         int colCount;
 
@@ -16,27 +16,27 @@ namespace AutoKek
         {
             rowCount = rows;
             colCount = cols;
-            matr = new double[rows,cols];
+            matr = new float[rows,cols];
         }
 
-        public Matrix fill(params double[] elems)
+        public Matrix fill(params float[] elems)
         {
             for(int i = 0; i < rowCount; i++)
             {
                 for(int j = 0; j < colCount; j++)
                 {
-                    matr[i, j] = Math.Round(elems[i * rowCount + j],2);
+                    matr[i, j] = (float)Math.Round(elems[i * rowCount + j],2);
                 }
             }
             return this;
         }
 
-        public Matrix fillAffine(params double[] elems)
+        public Matrix fillAffine(params float[] elems)
         {
             return fill(elems[0],elems[1],0,elems[2],elems[3],0,elems[4],elems[5],1);
         }
 
-        public double this[int x, int y]
+        public float this[int x, int y]
         {
             get
             {

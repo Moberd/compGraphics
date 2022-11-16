@@ -30,10 +30,10 @@ namespace AutoKek
         /// <summary>
         /// Самое главное здесь - набор точек (и для полигона, и для отрезка, и для всего...)
         /// </summary>
-        List<Point> polygonPoints = new List<Point>();
+        List<PointF> polygonPoints = new List<PointF>();
 
         // координаты отрезка для классификации точки
-        List<Point> polygonPointsForClassify = new List<Point>();
+        List<PointF> polygonPointsForClassify = new List<PointF>();
 
         /// <summary>
         /// Для рисования
@@ -65,6 +65,8 @@ namespace AutoKek
             isPointChoosingMode = isPointChoosing;
             buttonСhooseCentre.Visible = isPointChoosing;
             buttonСhooseCentre.Enabled = isPointChoosing;
+            button1.Visible = isPointChoosing;
+            button1.Enabled = isPointChoosing;
             labelChoodePoint.Visible = isPointChoosing;
 
         }
@@ -104,7 +106,7 @@ namespace AutoKek
             if (twolinesmode == 2)
             {
                // DrawSec(e);
-                Point p=CrossLines();
+                PointF p=CrossLines();
                 if (p.X!=int.MaxValue && p.Y!=int.MaxValue)
                 g.FillEllipse(new SolidBrush(Color.Red), p.X - 3, p.Y - 3, 7, 7);
                 setFlags();
@@ -118,7 +120,5 @@ namespace AutoKek
             polygonPoints.Clear();
             polygonPointsForClassify.Clear();
         }
-
-        
     }
 }
