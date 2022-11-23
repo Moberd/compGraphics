@@ -77,6 +77,8 @@ namespace Lab6
                 case 0: currentShapeType = ShapeType.TETRAHEDRON; break;
                 case 1: currentShapeType = ShapeType.HEXAHEDRON; break;
                 case 2: currentShapeType = ShapeType.OCTAHEDRON; break;
+                case 3: currentShapeType = ShapeType.ICOSAHEDRON; break;
+                case 4: currentShapeType = ShapeType.DODECAHEDRON; break;
                 default: throw new Exception("Фигурки всё сломали :(");
             }
         }

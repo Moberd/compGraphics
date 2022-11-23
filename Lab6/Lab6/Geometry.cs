@@ -193,6 +193,16 @@ namespace Lab6
     {
 
     }
+    
+    class Icosahedron : Shape
+    {
+
+    }
+
+    class Dodecahedron : Shape
+    {
+
+    }
 
 
     /// <summary>
@@ -212,6 +222,8 @@ namespace Lab6
                 case ShapeType.TETRAHEDRON: return getTetrahedron();
                 case ShapeType.OCTAHEDRON: return getOctahedron();
                 case ShapeType.HEXAHEDRON: return getHexahedron();
+                case ShapeType.ICOSAHEDRON: return getIcosahedron();
+                case ShapeType.DODECAHEDRON: return getDodecahedron();
 
                 default: throw new Exception("C# очень умный (нет)");
             }
@@ -298,6 +310,77 @@ namespace Lab6
         public static double degreesToRadians(double angle)
         {
             return Math.PI * angle / 180.0;
+        }
+        
+        /// <summary>
+        /// Получение икосаэдра
+        /// </summary>
+        /// <returns></returns>
+        public static Icosahedron getIcosahedron()
+        {
+            Icosahedron res = new Icosahedron();
+            Point circleCenter = new Point(100, 100, 100);
+            List<Point> circlePoints = new List<Point>();
+            for(int angle = 0; angle < 360; angle += 36)
+            {
+                if( angle % 72 == 0)
+                {
+                    circlePoints.Add(new Point(circleCenter.X + (100 * Math.Cos(degreesToRadians(angle))), circleCenter.Y + 100, circleCenter.Z + (100 * Math.Sin(degreesToRadians(angle)))));
+                    continue;
+                }
+                circlePoints.Add(new Point(circleCenter.X + (100 * Math.Cos(degreesToRadians(angle))), circleCenter.Y, circleCenter.Z + (100 * Math.Sin(degreesToRadians(angle)))));
+            }
+            Point a = new Point(100, 50, 100);
+            Point b = new Point(100, 250, 100);
+            for(int i = 0; i < 10; i++)
+            {
+                res.addFace(new Face().addEdge(new Line(circlePoints[i], circlePoints[(i + 1) % 10])).addEdge(new Line(circlePoints[(i + 1) % 10], circlePoints[(i + 2) % 10])).addEdge(new Line(circlePoints[(i+2) % 10], circlePoints[i])));
+            }
+            res.addFace(new Face().addEdge(new Line(circlePoints[1], a)).addEdge(new Line(a, circlePoints[3])).addEdge(new Line(circlePoints[3], circlePoints[1])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[3], a)).addEdge(new Line(a, circlePoints[5])).addEdge(new Line(circlePoints[5], circlePoints[3])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[5], a)).addEdge(new Line(a, circlePoints[7])).addEdge(new Line(circlePoints[7], circlePoints[5])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[7], a)).addEdge(new Line(a, circlePoints[9])).addEdge(new Line(circlePoints[9], circlePoints[7])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[9], a)).addEdge(new Line(a, circlePoints[1])).addEdge(new Line(circlePoints[1], circlePoints[9])));
+
+            res.addFace(new Face().addEdge(new Line(circlePoints[0], b)).addEdge(new Line(b, circlePoints[2])).addEdge(new Line(circlePoints[2], circlePoints[0])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[2], b)).addEdge(new Line(b, circlePoints[4])).addEdge(new Line(circlePoints[4], circlePoints[2])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[4], b)).addEdge(new Line(b, circlePoints[6])).addEdge(new Line(circlePoints[6], circlePoints[4])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[6], b)).addEdge(new Line(b, circlePoints[8])).addEdge(new Line(circlePoints[8], circlePoints[6])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[8], b)).addEdge(new Line(b, circlePoints[0])).addEdge(new Line(circlePoints[0], circlePoints[8])));
+            return res;
+        }
+
+        /// <summary>
+        /// Получение додекаэдра
+        /// </summary>
+        /// <returns></returns>
+        public static Dodecahedron getDodecahedron()
+        {
+            Dodecahedron res = new Dodecahedron();
+            var icosahedron = getIcosahedron();
+            List<Point> centers = new List<Point>();
+            for (int i = 0; i < icosahedron.Faces.Count; i++)
+            {
+                Face face = icosahedron.Faces[i];
+                var c = face.getCenter();
+                centers.Add(c);
+            }
+
+            //res.addFace(new Face().addEdge(new Line(centers[9], centers[0])).addEdge(new Line(centers[0], centers[1])).addEdge(new Line(centers[1], centers[10])).addEdge(new Line(centers[10], centers[14])).addEdge(new Line(centers[14], centers[9])));
+            for (int i = 0; i < 10; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    res.addFace(new Face().addEdge(new Line(centers[i], centers[(i + 1) % 10])).addEdge(new Line(centers[(i + 1) % 10], centers[(i + 2) % 10])).addEdge(new Line(centers[(i + 2) % 10], centers[15 + (i / 2 + 1) % 5])).addEdge(new Line(centers[15 + (i / 2 + 1) % 5], centers[15 + i / 2])).addEdge(new Line(centers[15 + i/ 2], centers[i])));
+
+                    continue;
+                }
+                res.addFace(new Face().addEdge(new Line(centers[i], centers[(i + 1) % 10])).addEdge(new Line(centers[(i + 1) % 10], centers[(i + 2) % 10])).addEdge(new Line(centers[(i + 2) % 10], centers[10 + (i / 2 + 1) % 5])).addEdge(new Line(centers[10 + (i / 2 + 1) % 5], centers[10 + i / 2])).addEdge(new Line(centers[10 + i / 2], centers[i])));
+            }
+            res.addFace(new Face().addEdge(new Line(centers[15], centers[16])).addEdge(new Line(centers[16], centers[17])).addEdge(new Line(centers[17], centers[18])).addEdge(new Line(centers[18], centers[19])).addEdge(new Line(centers[19], centers[15])));
+            res.addFace(new Face().addEdge(new Line(centers[10], centers[11])).addEdge(new Line(centers[11], centers[12])).addEdge(new Line(centers[12], centers[13])).addEdge(new Line(centers[13], centers[14])).addEdge(new Line(centers[14], centers[10])));
+
+            return res;
         }
     }
 }

@@ -125,7 +125,7 @@ namespace Lab6
             // selectShape
             // 
             this.selectShape.FormattingEnabled = true;
-            this.selectShape.Items.AddRange(new object[] { "Тетраэдр", "Гексаэдр", "Октаэдр" });
+            this.selectShape.Items.AddRange(new object[] { "Тетраэдр", "Гексаэдр", "Октаэдр", "Икосаэдр", "Додекаэдр" });
             this.selectShape.Location = new System.Drawing.Point(9, 8);
             this.selectShape.Margin = new System.Windows.Forms.Padding(2);
             this.selectShape.Name = "selectShape";
