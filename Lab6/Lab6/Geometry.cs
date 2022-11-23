@@ -11,7 +11,7 @@ namespace Lab6
     /// <summary>
     /// Тип проекции на экран
     /// </summary>
-    public enum ProjectionType { ISOMETRIC, PERSPECTIVE }
+    public enum ProjectionType { ISOMETRIC, PERSPECTIVE, CAVALIER }
 
     /// <summary>
     /// Точка в пространстве
@@ -23,6 +23,7 @@ namespace Lab6
         public static PointF worldCenter;
         static Matrix isometricMatrix = new Matrix(3,3).fill(Math.Sqrt(3),0,-Math.Sqrt(3),1,2,1, Math.Sqrt(2),-Math.Sqrt(2), Math.Sqrt(2)) * (1/ Math.Sqrt(6));
         static Matrix centralMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, k, 0, 0, 0, 1);
+        static Matrix cavMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, 1, 0, 0, Math.Cos(Math.PI/4), Math.Cos(Math.PI/4), 0, 0, 0, 0, 0, 1);
         const double k = 0.001f;
         public Point(int x, int y, int z)
         {
@@ -55,6 +56,11 @@ namespace Lab6
             {
                 Matrix res = new Matrix(1, 4).fill(Xf, Yf, Zf, 1) * centralMatrix * (1/(k*Zf + 1));
                 return new PointF(worldCenter.X + (float)res[0,0], worldCenter.Y + (float)res[0,1]);
+            }
+            else if (projection == ProjectionType.CAVALIER)
+            {
+                Matrix res = new Matrix(1, 4).fill(Xf, Yf, Zf, 1) * cavMatrix;
+                return new PointF(worldCenter.X + (float)res[0,0], worldCenter.Y + (float)res[0, 1]);
             }
             else
             {

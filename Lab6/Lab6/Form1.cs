@@ -41,6 +41,7 @@ namespace Lab6
             buttonShift.Enabled = interactiveMode;
             rbPerspective.Enabled = interactiveMode;
             rbIsometric.Enabled = interactiveMode;
+            rbCavalier.Enabled = interactiveMode;
             btnShowAxis.Enabled = interactiveMode;
             textAngle.Enabled = interactiveMode;
             textScaleX.Enabled = interactiveMode;
@@ -223,6 +224,14 @@ namespace Lab6
             redraw();
             drawLine(new Line(p1, p2), new Pen(Color.Aquamarine, 4));
         }
-        
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCavalier.Checked)
+            {
+                Point.projection = ProjectionType.CAVALIER;
+                redraw();
+            }
+        }
     }
 }
