@@ -32,11 +32,11 @@ namespace Lab7
             axizRotate.SelectedIndex = 0;
             g = canvas.CreateGraphics();
 
-            // Здесь мы задаём Декартову систему координат на канвасе
+            // Р—РґРµСЃСЊ РјС‹ Р·Р°РґР°С‘Рј Р”РµРєР°СЂС‚РѕРІСѓ СЃРёСЃС‚РµРјСѓ РєРѕРѕСЂРґРёРЅР°С‚ РЅР° РєР°РЅРІР°СЃРµ
             g.ScaleTransform(1.0F, -1.0F);
             g.TranslateTransform(0.0F, -(float)canvas.Height);
 
-            // А здесь задаём точку начала координат
+            // Рђ Р·РґРµСЃСЊ Р·Р°РґР°С‘Рј С‚РѕС‡РєСѓ РЅР°С‡Р°Р»Р° РєРѕРѕСЂРґРёРЅР°С‚
             Point.worldCenter = new PointF(canvas.Width / 2, canvas.Height / 2);
             setFlags();
         }
@@ -71,8 +71,8 @@ namespace Lab7
             etY0.Enabled = !interactiveMode;
             etY1.Enabled = !interactiveMode;
             tabControl.Enabled = !interactiveMode;
-            btnLoad.Text = interactiveMode ? "Сохранить" : "Загрузить из файла";
-            buttonShape.Text = interactiveMode ? "Очистить" : "Нарисовать";
+            btnLoad.Text = interactiveMode ? "РЎРѕС…СЂР°РЅРёС‚СЊ" : "Р—Р°РіСЂСѓР·РёС‚СЊ РёР· С„Р°Р№Р»Р°";
+            buttonShape.Text = interactiveMode ? "РћС‡РёСЃС‚РёС‚СЊ" : "РќР°СЂРёСЃРѕРІР°С‚СЊ";
             selectShape.Enabled = !interactiveMode;
         }
 
@@ -85,7 +85,7 @@ namespace Lab7
                 case 2: currentShapeType = ShapeType.OCTAHEDRON; break;
                 case 3: currentShapeType = ShapeType.ICOSAHEDRON; break;
                 case 4: currentShapeType = ShapeType.DODECAHEDRON; break;
-                default: throw new Exception("Фигурки всё сломали :(");
+                default: throw new Exception("Р¤РёРіСѓСЂРєРё РІСЃС‘ СЃР»РѕРјР°Р»Рё :(");
             }
         }
 
@@ -96,7 +96,7 @@ namespace Lab7
                 case 0: currentAxis = AxisType.X; break;
                 case 1: currentAxis = AxisType.Y; break;
                 case 2: currentAxis = AxisType.Z; break;
-                default: throw new Exception("Оси всё сломали :(");
+                default: throw new Exception("РћСЃРё РІСЃС‘ СЃР»РѕРјР°Р»Рё :(");
             }
         }
 
@@ -180,12 +180,29 @@ namespace Lab7
             isScaleModeWorldCenter = rbWorldCenter.Checked;
         }
 
-        //TODO кнопка загрузки
+        //TODO РєРЅРѕРїРєР° Р·Р°РіСЂСѓР·РєРё
         private void btnLoad_Click(object sender, EventArgs e)
         {
-
+            if (btnLoad.Text == "Р—Р°РіСЂСѓР·РёС‚СЊ РёР· С„Р°Р№Р»Р°")
+            {
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = openFileDialog1.FileName;
+                    if (File.Exists(fileName))
+                    {
+                        currentShape = Shape.readShape(fileName);
+                        redraw();
+                        setFlags(true);
+                    }
+                }
+            }
+            else
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    currentShape.saveShape(saveFileDialog1.FileName);
+            }
         }
-        //TODO кнопка вызова меню функций
+        //TODO РєРЅРѕРїРєР° РІС‹Р·РѕРІР° РјРµРЅСЋ С„СѓРЅРєС†РёР№
         private void btnChoosePlot_Click(object sender, EventArgs e)
         {
             
@@ -215,7 +232,7 @@ namespace Lab7
                 case 0: AxisforRotate = AxisType.X; break;
                 case 1: AxisforRotate = AxisType.Y; break;
                 case 2: AxisforRotate = AxisType.Z; break;
-                default: throw new Exception("Оси всё сломали :(");
+                default: throw new Exception("РћСЃРё РІСЃС‘ СЃР»РѕРјР°Р»Рё :(");
             }
         }
 
@@ -223,7 +240,7 @@ namespace Lab7
         {
             if (rbDimetric.Checked)
             {
-                Point.projection = ProjectionType.DIMETRIC;
+                Point.projection = ProjectionType.CAVALIER;
                 redraw();
             }
         }

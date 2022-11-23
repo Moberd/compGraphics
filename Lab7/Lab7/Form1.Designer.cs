@@ -825,7 +825,7 @@ namespace Lab7
             this.rbDimetric.Name = "rbDimetric";
             this.rbDimetric.Size = new System.Drawing.Size(167, 19);
             this.rbDimetric.TabIndex = 17;
-            this.rbDimetric.Text = "Диметрическая проекция";
+            this.rbDimetric.Text = "Прямая проекция";
             this.rbDimetric.UseVisualStyleBackColor = false;
             this.rbDimetric.CheckedChanged += new System.EventHandler(this.rbDimetric_CheckedChanged_1);
             // 
