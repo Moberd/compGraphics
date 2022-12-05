@@ -205,7 +205,15 @@ namespace Lab7
         //TODO кнопка вызова меню функций
         private void btnChoosePlot_Click(object sender, EventArgs e)
         {
-            
+            using (var form = new ChooseFunForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    currentFun = form.SelectedFunction;
+                    pbFormula.Size = form.ImageSize;
+                    pbFormula.Image = form.Formula;
+                }
+            }
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)

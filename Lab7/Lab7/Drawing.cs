@@ -11,7 +11,7 @@ namespace Lab7
     /// <summary>
     /// Тип объёмной фигуры
     /// </summary>
-    public enum ShapeType { TETRAHEDRON, HEXAHEDRON, OCTAHEDRON, ICOSAHEDRON, DODECAHEDRON,ROTATION_SHAPE }
+    public enum ShapeType { TETRAHEDRON, HEXAHEDRON, OCTAHEDRON, ICOSAHEDRON, DODECAHEDRON, ROTATION_SHAPE}
 
     public partial class Form1
     {
@@ -50,9 +50,17 @@ namespace Lab7
                 }
                 else
                 {
-                    //TODO
+                    if (tabControl.SelectedIndex == 1)
+                    {
+                        currentShape = ShapeGetter.getSurfaceSegment(currentFun, int.Parse(etX0.Text), int.Parse(etX1.Text), int.Parse(etY0.Text), int.Parse(etY1.Text), int.Parse(etSplit.Text));
+                    }
+                    else
+                    {
+                        Div = int.Parse(getDiv.Text);
+                        currentShape = ShapeGetter.getRotationShape(RotationShapePoints, Div, AxisforRotate);
+                    }
                 }
-
+                
                 redraw();
                 setFlags(true);
             }
@@ -60,7 +68,7 @@ namespace Lab7
         }
 
         /// <summary>
-        /// Рисует фигуры на канвасе
+        /// Рисует фигуры на канвасе, выделяя цветом некоторые грани у додекаэдра и икосаэра
         /// </summary>
         /// <param name="shape">Фигура, которую надо нарисовать</param>
         void drawShape(Shape shape)
