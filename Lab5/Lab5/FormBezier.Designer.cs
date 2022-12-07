@@ -29,65 +29,71 @@ namespace Lab5
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.canvas = new System.Windows.Forms.PictureBox();
-            this.delall_button = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // canvas
+            // pictureBox1
             // 
-            this.canvas.BackColor = System.Drawing.SystemColors.Window;
-            this.canvas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.canvas.Location = new System.Drawing.Point(11, 11);
-            this.canvas.Margin = new System.Windows.Forms.Padding(2);
-            this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(635, 417);
-            this.canvas.TabIndex = 0;
-            this.canvas.TabStop = false;
-            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
-            this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
-            this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Location = new System.Drawing.Point(9, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(987, 637);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // delall_button
+            // button3
             // 
-            this.delall_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.delall_button.Location = new System.Drawing.Point(651, 378);
-            this.delall_button.Name = "delall_button";
-            this.delall_button.Size = new System.Drawing.Size(50, 50);
-            this.delall_button.TabIndex = 2;
-            this.delall_button.Text = "🗑";
-            this.delall_button.UseVisualStyleBackColor = true;
-            this.delall_button.Click += new System.EventHandler(this.delall_button_Click);
+            this.button3.Location = new System.Drawing.Point(1000, 621);
+            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(98, 26);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Очистить всё";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // timer1
+            // button1
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 15;
-            this.timer1.Tick += new System.EventHandler(this.timer_Tick);
+            this.button1.Location = new System.Drawing.Point(1000, 591);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 26);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Удалить точку";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // FormBezier
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(707, 439);
-            this.Controls.Add(this.delall_button);
-            this.Controls.Add(this.canvas);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "FormBezier";
+            this.ClientSize = new System.Drawing.Size(1109, 658);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "Form1";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Кривые Безье";
-            ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
+            this.Text = "Безье";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button delall_button;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox canvas;
+
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button1;
     }
 }
+

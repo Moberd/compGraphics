@@ -20,7 +20,7 @@ namespace Lab5
         public FormMountains() 
         {
             InitializeComponent();
-            trackBar1.Scroll += trackBar1_Scroll;
+            //trackBar1.Scroll += trackBar1_Scroll;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             g = canvas.CreateGraphics();
             canvas.Image = new Bitmap(1300, 900);
@@ -64,7 +64,7 @@ namespace Lab5
             g.Clear(Color.White);
             r = double.Parse(comboBox1.SelectedItem.ToString());//коэфф шероховатости зададим сами
                                             // n= double.Parse(textBox2.Text);//глубина рекурсии задается пользователем
-            n = trackBar1.Value;
+            //n = trackBar1.Value;
 
 
             for (int j = 1; j <= (int)n; j++)
@@ -113,7 +113,7 @@ namespace Lab5
         }
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            label2.Text = String.Format("Глубина рекурсии: {0}", trackBar1.Value);
+            //label2.Text = String.Format("Глубина рекурсии: {0}", trackBar1.Value);
         }
         void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
