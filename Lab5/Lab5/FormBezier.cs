@@ -10,193 +10,181 @@ using System.Windows.Forms;
 
 namespace Lab5
 {
-    public enum PointType
-    {
-        MAIN,
-        LEFT,
-        RIGHT
-    }
-
-    
     public partial class FormBezier : Form
     {
-        List<BezPoint> points = new List<BezPoint>();
-        Pen blackPen = new Pen(Color.LightGray, 3);
-        Graphics g;
-        Bitmap myBitmap;
+        public List<Point> points = new List<Point>();
+        public bool new_button = false;
+        public Graphics gr;
+        public Point drPoint;
+        Pen blackPen = new Pen(Color.Black, 3);
+        public int drInd;
+        public bool moving = false;
+        public bool deleting = false;
 
         public FormBezier()
         {
             InitializeComponent();
-            myBitmap = new Bitmap(635, 417);
-            //g = canvas.CreateGraphics();
-            g = Graphics.FromImage(myBitmap);
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            gr = pictureBox1.CreateGraphics();
+            //gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            drPoint = new Point(0, 0);
         }
 
-        bool shouldRedraw = false;
-
-        private void timer_Tick(object sender, EventArgs e)
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (shouldRedraw)
+            if (deleting)
             {
-                redrawCanvas();
-                shouldRedraw = false;
+                int delInd = -1;
+                for (int i = 0; i < points.Count; i++)
+                    if (Math.Sqrt(Math.Pow(e.X - points[i].X, 2) + Math.Pow(e.Y - points[i].Y, 2)) <= 7)
+                        delInd = i;
+                if (delInd != -1)
+                    points.RemoveAt(delInd);
+                button1.Enabled = true;
+                if (points.Count < 4)
+                    draw_points();
+                else
+                    drawBesier();
             }
+
+            if (!moving && !deleting)
+            {
+                points.Add(new Point(e.X, e.Y));
+                new_button = false;
+                if (points.Count < 4)
+                    draw_points();
+                else
+                    drawBesier();
+            }
+            else if (!deleting)
+            {
+                moving = false;
+            }
+            deleting = false;
+
         }
 
-        void redrawCanvas()
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            g.Clear(Color.White);
-            foreach (var p in points)
-            {
-                g.DrawLine(blackPen, p.left, p.right);
-                g.FillEllipse(new SolidBrush(Color.Blue), p.left.X - 3, p.left.Y - 3, 7, 7);
-                g.FillEllipse(new SolidBrush(Color.Blue), p.right.X - 3, p.right.Y - 3, 7, 7);
-                g.FillEllipse(new SolidBrush(Color.Red), p.main.X - 5, p.main.Y - 5, 9, 9);
-            }
-
-            for (int i = 0; i < points.Count - 1; i++)
-            {
-                drawBezierLine(points[i].main, points[i].right, points[i + 1].left, points[i + 1].main);
-            }
-            canvas.Image = myBitmap;
-        }
-
-
-
-        void drawBezierLine(Point p1, Point p2, Point p3, Point p4)
-        {
-            Point lastPoint = p1;
-            for (double t = 0.05; t <= 1; t += 0.05)
-            {
-                int x = (int)(Math.Pow(1 - t, 3) * p1.X + 3 * Math.Pow(1 - t, 2) * t * p2.X + 3 * (1 - t) * Math.Pow(t, 2) * p3.X + Math.Pow(t, 3) * p4.X);
-                int y = (int)(Math.Pow(1 - t, 3) * p1.Y + 3 * Math.Pow(1 - t, 2) * t * p2.Y + 3 * (1 - t) * Math.Pow(t, 2) * p3.Y + Math.Pow(t, 3) * p4.Y);
-                g.DrawLine(new Pen(Color.Black, 4), lastPoint, lastPoint = new Point(x, y));
-            }
-            g.DrawLine(new Pen(Color.Black, 4), lastPoint, p4);
-        }
-
-        int draggingPointIndex = -1;
-        PointType draggingPointType;
-        bool isDragging = false;
-
-        private void canvas_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
+            if (!deleting)
                 for (int i = 0; i < points.Count; i++)
                 {
-                    if ((Math.Abs(points[i].main.X - e.X) < 10) && (Math.Abs(points[i].main.Y - e.Y) < 10))
+                    if (Math.Sqrt(Math.Pow(e.X - points[i].X, 2) + Math.Pow(e.Y - points[i].Y, 2)) <= 7)
                     {
-                        draggingPointIndex = i;
-                        draggingPointType = PointType.MAIN;
-                        isDragging = true;
-                        return;
-                    }
-                    if ((Math.Abs(points[i].left.X - e.X) < 10) && (Math.Abs(points[i].left.Y - e.Y) < 10))
-                    {
-                        draggingPointIndex = i;
-                        draggingPointType = PointType.LEFT;
-                        isDragging = true;
-                        return;
-                    }
-                    if ((Math.Abs(points[i].right.X - e.X) < 10) && (Math.Abs(points[i].right.Y - e.Y) < 10))
-                    {
-                        draggingPointIndex = i;
-                        draggingPointType = PointType.RIGHT;
-                        isDragging = true;
-                        return;
+                        drInd = i;
+                        moving = true;
                     }
                 }
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (moving && !deleting)
+            {
+                points[drInd] = new Point(e.X, e.Y);
+                drawBesier();
+
+            }
+
+        }
+
+        public void draw_points()
+        {
+            gr.Clear(Color.White);
+            for (int i = 0; i < points.Count; i++)
+            {
+                gr.FillEllipse(new SolidBrush(Color.Black), points[i].X - 3, points[i].Y - 3, 7, 7);
             }
         }
 
-        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        public void drawBesier()
         {
-            if (isDragging)
-            {
-                points[draggingPointIndex].replacePoint(draggingPointType, e.Location);
-                shouldRedraw = true;
-            }
-        }
+            gr.Clear(Color.White);
 
-        private void canvas_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
+            List<Point> newPoints = new List<Point>();
+            newPoints.Add(points[0]);
+            newPoints.Add(points[1]);
+            newPoints.Add(points[2]);
+
+            for (int i = 3; i < points.Count; i++)
             {
-                foreach (var point in points)
+                if (i != points.Count - 1)
                 {
-                    if ((Math.Abs(point.main.X - e.X) < 10) && (Math.Abs(point.main.Y - e.Y) < 10))
+                    if (i % 2 == 0)
+                        newPoints.Add(points[i]);
+                    if (i % 2 != 0)
                     {
-                        points.Remove(point);
-                        shouldRedraw = true;
-                        return;
+                        newPoints.Add(new Point(points[i - 1].X + (points[i].X - points[i - 1].X) / 2, points[i - 1].Y + (points[i].Y - points[i - 1].Y) / 2));
+                        newPoints.Add(points[i]);
                     }
                 }
-            }
-            else
-            {
-                if (!isDragging)
+                else
                 {
-                    points.Add(new BezPoint(e.Location));
-                    shouldRedraw = true;
-                    return;
+                    if (i % 2 == 0)
+                    {
+                        newPoints.Add(points[i]);
+                        newPoints.Add(points[i]);
+                    }
+                    if (i % 2 != 0)
+                        newPoints.Add(points[i]);
                 }
-                isDragging = false;
-                draggingPointIndex = -1;
+            }
+
+            List<Point> drawingPoints = new List<Point>();
+
+            Point point1;
+            Point point2;
+            Point point3;
+            Point point4;
+
+            for (int i = 0; i < newPoints.Count - 3; i += 3)
+            {
+                point1 = newPoints[i];
+                point2 = newPoints[i + 1];
+                point3 = newPoints[i + 2];
+                point4 = newPoints[i + 3];
+
+                int N = 100;
+                double dt = 1.0 / N;
+                double t = 0.0;
+                for (int j = 0; j <= N; j++)
+                {
+                    drawingPoints.Add(B(t, point1, point2, point3, point4));
+                    t += dt;
+                }
+
+            }
+            gr.DrawLines(blackPen, drawingPoints.ToArray());
+            for (int i = 0; i < newPoints.Count; i++)
+            {
+                //if (!points.Contains(newPoints[i]))
+                //    gr.FillEllipse(Brushes.Blue, newPoints[i].X - 2, newPoints[i].Y - 2, 3, 3);
+                //else
+                //    gr.FillEllipse(Brushes.Red, newPoints[i].X - 2, newPoints[i].Y - 2, 7, 7);
+
+                if (points.Contains(newPoints[i]))
+                    gr.FillEllipse(Brushes.Red, newPoints[i].X - 2, newPoints[i].Y - 2, 7, 7);
             }
         }
-
-        private void delall_button_Click(object sender, EventArgs e)
+        private Point B(double t, Point point1, Point point2, Point point3, Point point4)
         {
-            g.Clear(Color.White);
+            double x = (1 - t) * (1 - t) * (1 - t) * point1.X + (1 - t) * (1 - t) * 3 * t * point2.X + (1 - t) * t * 3 * t * point3.X + t * t * t * point4.X;
+            double y = (1 - t) * (1 - t) * (1 - t) * point1.Y + (1 - t) * (1 - t) * 3 * t * point2.Y + (1 - t) * t * 3 * t * point3.Y + t * t * t * point4.Y;
+            return new Point((int)x, (int)y);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            gr.Clear(Color.White);
             points.Clear();
         }
-    }
-    public class BezPoint
-    {
-        public Point main;
-        public Point left;
-        public Point right;
 
-        public BezPoint(Point point)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            main = point;
-            left = new Point(main.X - 50, main.Y);
-            right = new Point(main.X + 50, main.Y);
+            button1.Enabled = false;
+            deleting = true;
         }
-
-        void changeMainPointLocation(Point newLocation)
-        {
-            left.Offset(newLocation.X - main.X, newLocation.Y - main.Y);
-            right.Offset(newLocation.X - main.X, newLocation.Y - main.Y);
-            main = newLocation;
-        }
-
-        void changeLeftPointLocation(Point newLocation)
-        {
-            right.X -= newLocation.X - left.X;
-            right.Y -= newLocation.Y - left.Y;
-            left = newLocation;
-        }
-
-        void changeRightPointLocation(Point newLocation)
-        {
-            left.X -= newLocation.X - right.X;
-            left.Y -= newLocation.Y - right.Y;
-            right = newLocation;
-        }
-
-        public void replacePoint(PointType type, Point newPoint)
-        {
-            switch (type)
-            {
-                case PointType.MAIN: changeMainPointLocation(newPoint); break;
-                case PointType.LEFT: changeLeftPointLocation(newPoint); break;
-                case PointType.RIGHT: changeRightPointLocation(newPoint); break;
-            }
-        }
-
     }
 }
